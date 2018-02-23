@@ -19,7 +19,7 @@
 
     <p>
         <label for="searchTerm">Keyword:</label>
-        <input type="text" name="searchTerm" id="searchTerm" />
+        <input type="text" name="searchTerm" id="searchTerm" value="@ViewBag.searchTerm"/>
     </p>
 
     <input type="submit" value="Search" />
@@ -32,5 +32,26 @@
 
     <h3>@ViewBag.jobs.Count Result(s)</h3>
 
-    // TODO #2 - Loop over jobs dictionary and display all job fields 
+    // TODO #2 - Loop over jobs dictionary and display all job fields
+    
+        @foreach (Dictionary<string, string> item in ViewBag.jobs)
+        {   <table class="job-listing">
+            @foreach (KeyValuePair<string, string> i in item)
+            {
+                @using TechJobs.Models;
+               
+                
+                    <tr>
+                        <th>@StringExtensions.ToTitleCase(i.Key)</th>
+                        <td>@i.Value</td>
+                    </tr>
+                
+
+            }
+            </table>
+            <br />
+
+        }
+        
+
 }
